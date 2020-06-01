@@ -2,11 +2,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>WiFi Configration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Accessory Setup</title>
 <style type="text/css">
-html, input {font-size: 40px;}
-h1 { font-size: 150%; text-align: center; }
-body .container {width: 15em; margin: 0 auto; padding: 1em;}
+html {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --primary-background-color: #F2F2F7;
+    --secondary-background-color: white;
+    --primary-text-color: black;
+    --secondary-text-color: gray;
+    background-color: var(--primary-background-color);
+}
+@media (prefers-color-scheme: dark) {
+    html {
+        --primary-background-color: #131415;
+        --secondary-background-color: #1C1C1E;
+        --primary-text-color: white;
+        --secondary-text-color: gray;
+    }
+}
+h1 {
+    font-size: 150%;
+    text-align: center;
+}
+h1 svg {
+    display: block;
+    margin: 5px auto;
+}
+body .container {
+    width: 100%;
+    max-width: 415px;
+    margin: 0 auto;
+}
 label {display: block;}
 input[type=text], input[type=password] {width: 100%; box-sizing: border-box;}
 input[type=submit] {
@@ -18,7 +45,6 @@ input[type=submit] {
     background-color: #4caf50;
     cursor: pointer;
     -webkit-appearance: none;
-    -webkit-border-radius: 0;
 }
 input[type=submit]#refresh {background-color: #44bbe3;}
 input[type=submit]#join {background-color: #4caf50;}
@@ -37,10 +63,22 @@ input[type=submit][disabled] {
     position: relative;
     padding-left: 1.1em;
 }
-.networks li.secure::before {content: "🔒"; position: absolute; left: 0;}
-.networks li.selected {font-weight: bold; background-color: #ddd}
-.networks li:hover {background-color: #eee;}
-.networks li.other {border-top: 2px solid #aaa; text-align: center;}
+.networks li.secure::after {
+    content: "";
+    position: absolute;
+    right: 1em;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="39" height="55" viewBox="0 0 39 55"><path fill="#5C6D80" d="M206.623047,175.386719 C210.255859,175.386719 212.042969,173.599609 212.042969,169.644531 L212.042969,149.166016 C212.042969,145.621094 210.578125,143.804688 207.560547,143.511719 L207.560547,136.568359 C207.560547,126.109375 200.646484,121.041016 193.380859,121.041016 C186.085938,121.041016 179.171875,126.109375 179.171875,136.568359 L179.171875,143.628906 C176.388672,144.068359 174.689453,145.855469 174.689453,149.166016 L174.689453,169.644531 C174.689453,173.599609 176.476562,175.386719 180.109375,175.386719 L206.623047,175.386719 Z M183.917969,143.511719 L183.917969,136.011719 C183.917969,129.214844 188.253906,125.582031 193.380859,125.582031 C198.478516,125.582031 202.814453,129.214844 202.814453,136.011719 L202.814453,143.453125 L183.917969,143.511719 Z" opacity=".35" transform="translate(-174 -121)"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.networks li.selected::before {
+    content: "";
+    margin-left: -100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="49" height="49" viewBox="0 0 49 49"><defs><path id="selected-a" d="M284.371094,163.541016 C285.660156,163.541016 286.65625,162.984375 287.388672,161.900391 L313.521484,120.914062 C314.048828,120.064453 314.283203,119.390625 314.283203,118.716797 C314.283203,117.046875 313.140625,115.904297 311.441406,115.904297 C310.269531,115.904297 309.595703,116.34375 308.863281,117.486328 L284.253906,156.626953 L271.539062,140.074219 C270.806641,139.078125 270.074219,138.667969 268.990234,138.667969 C267.261719,138.667969 266.060547,139.839844 266.060547,141.509766 C266.060547,142.212891 266.353516,142.974609 266.939453,143.707031 L281.324219,161.900391 C282.203125,163.013672 283.111328,163.541016 284.371094,163.541016 Z"/></defs><g fill="none" transform="translate(-266 -115)"><use fill="#5C6D80" xlink:href="#selected-a"/><use fill="#0A84FF" xlink:href="#selected-a"/></g></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.networks li.other {border-top: 4px solid var(--primary-background-color)}
 .nonetworks {text-align: center; margin: 1em 0;}
 .field {margin-bottom: 0.5em;}
 .field.required label::before {content: "*"; color: red;}
@@ -51,7 +89,10 @@ input[type=submit][disabled] {
         <!-- part HTML_SETTINGS_CUSTOM_HTML -->
         {{ custom_html|safe }}
         <!-- part HTML_SETTINGS_BODY -->
-        <h1>Join WiFi network</h1>
+        <h1>
+            <svg xmlns="http://www.w3.org/2000/svg" width="63" height="46" viewBox="0 0 63 46"><path fill="#5C6D80" d="M79.5722656,55.5625 C86.1054687,48.6191406 94.7480469,44.9570312 104.386719,44.9570312 C114.083984,44.9570312 122.755859,48.6191406 129.259766,55.5917969 C129.757812,56.0898438 130.548828,56.0898438 131.076172,55.5332031 L134.738281,51.8125 C135.236328,51.34375 135.236328,50.6992188 134.826172,50.2304688 C128.556641,42.4667969 116.720703,36.8125 104.386719,36.8125 C92.0527344,36.8125 80.2167969,42.4667969 73.9472656,50.2304688 C73.5371094,50.6992188 73.5664062,51.34375 74.0351562,51.8125 L77.6972656,55.5917969 C78.2246094,56.1484375 79.0449219,56.1191406 79.5722656,55.5625 Z M120.001953,66.6660156 L124.132812,62.5644531 C124.601562,62.125 124.660156,61.4804688 124.220703,61.0117188 C120.177734,56.03125 112.677734,52.3691406 104.386719,52.3691406 C96.0957031,52.3691406 88.5957031,56.03125 84.5234375,61.0117188 C84.1132812,61.4804688 84.171875,62.0957031 84.640625,62.5644531 L88.7714844,66.6953125 C89.3574219,67.28125 90.1191406,67.2226562 90.6757812,66.578125 C93.8691406,63.0332031 99.0839844,60.484375 104.386719,60.5136719 C109.748047,60.484375 114.933594,63.1210938 118.185547,66.6660156 C118.712891,67.2519531 119.445312,67.2519531 120.001953,66.6660156 Z M104.386719,81.2265625 C105.001953,81.2265625 105.529297,80.9335938 106.554688,79.9375 L113.029297,73.6972656 C113.498047,73.2871094 113.556641,72.6425781 113.205078,72.1445312 C111.417969,69.859375 108.136719,67.9257812 104.386719,67.9257812 C100.548828,67.9257812 97.2089844,69.9472656 95.4511719,72.3203125 C95.1875,72.7304688 95.2753906,73.2871094 95.7441406,73.6972656 L102.21875,79.9375 C103.244141,80.9335938 103.771484,81.2265625 104.386719,81.2265625 Z" opacity=".35" transform="translate(-73 -36)"/></svg>
+            Join WiFi network
+        </h1>
         <form action="/settings" method="get">
             <input type="submit" id="refresh" value="⟲ Refresh" />
         </form>
