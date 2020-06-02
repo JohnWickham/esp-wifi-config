@@ -141,7 +141,7 @@ input[type=submit][disabled] {opacity: 0.5}
             <input type="submit" id="refresh" value="Refresh" />
         </form> -->
         <form action="/settings" method="post">
-            <div class="nonetworks" style="display: none;">
+            <div class="nonetworks" hidden>
                 <h3>No Networks Found</h3>
                 <p>Make sure your accessory is in range of your WiFi network.</p>
                 <p>This accessory only supports 2.4GHz networks. <a href="https://support.apple.com/en-us/HT202068#24ghz">Learn More</a></a></p>
@@ -156,12 +156,12 @@ input[type=submit][disabled] {opacity: 0.5}
                 <li class="other">Other…</li>
             </ul>
 
-            <div class="field required ssid" style="display: none;">
+            <div class="field required ssid" hidden>
                 <label for="ssid">Network</label>
                 <input type="text" id="ssid" name="ssid" />
             </div>
 
-            <div class="field required password" style="display: none;">
+            <div class="field required password" hidden>
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" />
             </div>
