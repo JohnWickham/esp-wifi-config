@@ -64,6 +64,8 @@ input[type=submit] {
 input[type=submit][disabled] {opacity: 0.5}
 .field {
     position: relative;
+
+    margin: 1em auto;
     background-color: var(--secondary-background-color);
     border-radius: 8px;
     padding: 1em 1em 1em 110px;
@@ -73,6 +75,16 @@ input[type=submit][disabled] {opacity: 0.5}
     left: 1em;
     color: var(--secondary-text-color);
     line-height: 24px;
+}
+.field.ssid {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin: 1em auto 0 auto;
+}
+.field.ssid + .field {
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin: 0 auto 1em auto;
 }
 .networks {
     list-style: none;
@@ -101,8 +113,8 @@ input[type=submit][disabled] {opacity: 0.5}
 }
 .networks li.selected::before {
     content: "";
-    width: 1.2em;
-    height: 1.2em;
+    width: 1em;
+    height: 1em;
     position: absolute;
     left: 1em;
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="49" height="49" viewBox="0 0 49 49"><defs><path id="selected-a" d="M284.371094,163.541016 C285.660156,163.541016 286.65625,162.984375 287.388672,161.900391 L313.521484,120.914062 C314.048828,120.064453 314.283203,119.390625 314.283203,118.716797 C314.283203,117.046875 313.140625,115.904297 311.441406,115.904297 C310.269531,115.904297 309.595703,116.34375 308.863281,117.486328 L284.253906,156.626953 L271.539062,140.074219 C270.806641,139.078125 270.074219,138.667969 268.990234,138.667969 C267.261719,138.667969 266.060547,139.839844 266.060547,141.509766 C266.060547,142.212891 266.353516,142.974609 266.939453,143.707031 L281.324219,161.900391 C282.203125,163.013672 283.111328,163.541016 284.371094,163.541016 Z"/></defs><g fill="none" transform="translate(-266 -115)"><use fill="#5C6D80" xlink:href="#selected-a"/><use fill="#0A84FF" xlink:href="#selected-a"/></g></svg>');
