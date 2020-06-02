@@ -66,12 +66,13 @@ input[type=submit][disabled] {opacity: 0.5}
     position: relative;
     background-color: var(--secondary-background-color);
     border-radius: 8px;
-    padding: 1em 1em 1em 200px;
+    padding: 1em 1em 1em 110px;
 }
 .field label {
     position: absolute;
     left: 1em;
     color: var(--secondary-text-color);
+    line-height: 24px;
 }
 .networks {
     list-style: none;
@@ -141,7 +142,7 @@ input[type=submit][disabled] {opacity: 0.5}
             </ul>
 
             <div class="field required ssid" style="display: none;">
-                <label for="ssid">SSID:</label>
+                <label for="ssid">Network</label>
                 <input type="text" id="ssid" name="ssid" />
             </div>
 
