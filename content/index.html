@@ -124,6 +124,7 @@ input[type=submit][disabled] {opacity: 0.5}
 }
 .networks li.other {border-top: 3px solid var(--primary-background-color)}
 .nonetworks {text-align: center; margin: 1em 0;}
+*[hidden] {display: none;}
 </style>
 </head>
 <body>
@@ -180,8 +181,8 @@ join_button = document.getElementById('join');
 
 function enable(e) { e.disabled = ''; }
 function disable(e) { e.disabled = 'disabled'; }
-function show(e) { e.style.display = 'block'; e.setAttribute('hidden', ''); }
-function hide(e) { e.style.display = 'none'; e.removeAttribute('hidden'); }
+function show(e) { e.removeAttribute('hidden'); }
+function hide(e) { e.setAttribute('hidden', ''); }
 
 function selectNetwork(e) {
     let nets = document.querySelectorAll('ul.networks li');
