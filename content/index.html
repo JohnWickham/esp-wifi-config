@@ -42,6 +42,11 @@ input[type=text], input[type=password] {
     width: 100%;
     box-sizing: border-box;
     background-color: transparent;
+    color: var(--primary-text-color);
+    font-size: 16px;
+}
+input:focus {
+    outline: none;
 }
 input[type=submit] {
     width: 100%;
@@ -65,7 +70,8 @@ input[type=submit][disabled] {opacity: 0.5}
 }
 .field label {
     position: absolute;
-    left: 0;
+    left: 1em;
+    color: var(--secondary-text-color);
 }
 .networks {
     list-style: none;
