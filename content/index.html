@@ -38,7 +38,11 @@ body .container {
     margin: 0 auto;
 }
 label {display: block;}
-input[type=text], input[type=password] {width: 100%; box-sizing: border-box;}
+input[type=text], input[type=password] {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: transparent;
+}
 input[type=submit] {
     width: 100%;
     text-decoration: none;
@@ -53,6 +57,16 @@ input[type=submit] {
     border: none;
 }
 input[type=submit][disabled] {opacity: 0.5}
+.field {
+    position: relative;
+    background-color: var(--secondary-background-color);
+    border-radius: 8px;
+    padding: 1em 1em 1em 200px;
+}
+.field label {
+    position: absolute;
+    left: 0;
+}
 .networks {
     list-style: none;
     margin: 1em 0;
@@ -90,8 +104,6 @@ input[type=submit][disabled] {opacity: 0.5}
 }
 .networks li.other {border-top: 4px solid var(--primary-background-color)}
 .nonetworks {text-align: center; margin: 1em 0;}
-.field {margin-bottom: 0.5em;}
-.field.required label::before {content: "*"; color: red;}
 </style>
 </head>
 <body>
