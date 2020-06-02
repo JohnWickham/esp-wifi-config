@@ -26,6 +26,7 @@ html {
 h1 {
     font-size: 150%;
     text-align: center;
+    margin: 2em auto;
 }
 h1 svg {
     display: block;
@@ -57,19 +58,20 @@ input[type=submit][disabled] {opacity: 0.5}
     margin: 1em 0;
     padding: 0;
     background-color: var(--secondary-background-color);
+    border-radius: 8px;
 }
 .networks li {
     cursor: pointer;
-    padding: 0.25em;
-    margin-bottom: 0.25em;
+    padding: 1em 50px 1em 50px; 
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     position: relative;
-    padding-left: 1.1em;
 }
 .networks li.secure::after {
     content: "";
+    width: 0.8em;
+    height: 1em;
     position: absolute;
     right: 1em;
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="39" height="55" viewBox="0 0 39 55"><path fill="#5C6D80" d="M206.623047,175.386719 C210.255859,175.386719 212.042969,173.599609 212.042969,169.644531 L212.042969,149.166016 C212.042969,145.621094 210.578125,143.804688 207.560547,143.511719 L207.560547,136.568359 C207.560547,126.109375 200.646484,121.041016 193.380859,121.041016 C186.085938,121.041016 179.171875,126.109375 179.171875,136.568359 L179.171875,143.628906 C176.388672,144.068359 174.689453,145.855469 174.689453,149.166016 L174.689453,169.644531 C174.689453,173.599609 176.476562,175.386719 180.109375,175.386719 L206.623047,175.386719 Z M183.917969,143.511719 L183.917969,136.011719 C183.917969,129.214844 188.253906,125.582031 193.380859,125.582031 C198.478516,125.582031 202.814453,129.214844 202.814453,136.011719 L202.814453,143.453125 L183.917969,143.511719 Z" opacity=".35" transform="translate(-174 -121)"/></svg>');
@@ -78,7 +80,10 @@ input[type=submit][disabled] {opacity: 0.5}
 }
 .networks li.selected::before {
     content: "";
-    margin-left: -100%;
+    width: 1.2em;
+    height: 1.2em;
+    position: absolute;
+    left: 1em;
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="49" height="49" viewBox="0 0 49 49"><defs><path id="selected-a" d="M284.371094,163.541016 C285.660156,163.541016 286.65625,162.984375 287.388672,161.900391 L313.521484,120.914062 C314.048828,120.064453 314.283203,119.390625 314.283203,118.716797 C314.283203,117.046875 313.140625,115.904297 311.441406,115.904297 C310.269531,115.904297 309.595703,116.34375 308.863281,117.486328 L284.253906,156.626953 L271.539062,140.074219 C270.806641,139.078125 270.074219,138.667969 268.990234,138.667969 C267.261719,138.667969 266.060547,139.839844 266.060547,141.509766 C266.060547,142.212891 266.353516,142.974609 266.939453,143.707031 L281.324219,161.900391 C282.203125,163.013672 283.111328,163.541016 284.371094,163.541016 Z"/></defs><g fill="none" transform="translate(-266 -115)"><use fill="#5C6D80" xlink:href="#selected-a"/><use fill="#0A84FF" xlink:href="#selected-a"/></g></svg>');
     background-size: contain;
     background-repeat: no-repeat;
