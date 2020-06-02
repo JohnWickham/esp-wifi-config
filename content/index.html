@@ -42,6 +42,7 @@ input[type=text], input[type=password] {
     width: 100%;
     box-sizing: border-box;
     background-color: transparent;
+    border: none;
     color: var(--primary-text-color);
     font-size: 16px;
 }
@@ -81,9 +82,9 @@ input[type=submit][disabled] {opacity: 0.5}
     border-bottom-right-radius: 0;
     margin: 1em auto 0 auto;
 }
-.field.ssid + .field {
+.field.ssid:not([hidden]) + .field {
     border-top-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
     margin: 0 auto 1em auto;
 }
 .networks {
@@ -121,7 +122,7 @@ input[type=submit][disabled] {opacity: 0.5}
     background-size: contain;
     background-repeat: no-repeat;
 }
-.networks li.other {border-top: 4px solid var(--primary-background-color)}
+.networks li.other {border-top: 3px solid var(--primary-background-color)}
 .nonetworks {text-align: center; margin: 1em 0;}
 </style>
 </head>
@@ -134,6 +135,7 @@ input[type=submit][disabled] {opacity: 0.5}
             <svg xmlns="http://www.w3.org/2000/svg" width="63" height="46" viewBox="0 0 63 46"><path fill="#5C6D80" d="M79.5722656,55.5625 C86.1054687,48.6191406 94.7480469,44.9570312 104.386719,44.9570312 C114.083984,44.9570312 122.755859,48.6191406 129.259766,55.5917969 C129.757812,56.0898438 130.548828,56.0898438 131.076172,55.5332031 L134.738281,51.8125 C135.236328,51.34375 135.236328,50.6992188 134.826172,50.2304688 C128.556641,42.4667969 116.720703,36.8125 104.386719,36.8125 C92.0527344,36.8125 80.2167969,42.4667969 73.9472656,50.2304688 C73.5371094,50.6992188 73.5664062,51.34375 74.0351562,51.8125 L77.6972656,55.5917969 C78.2246094,56.1484375 79.0449219,56.1191406 79.5722656,55.5625 Z M120.001953,66.6660156 L124.132812,62.5644531 C124.601562,62.125 124.660156,61.4804688 124.220703,61.0117188 C120.177734,56.03125 112.677734,52.3691406 104.386719,52.3691406 C96.0957031,52.3691406 88.5957031,56.03125 84.5234375,61.0117188 C84.1132812,61.4804688 84.171875,62.0957031 84.640625,62.5644531 L88.7714844,66.6953125 C89.3574219,67.28125 90.1191406,67.2226562 90.6757812,66.578125 C93.8691406,63.0332031 99.0839844,60.484375 104.386719,60.5136719 C109.748047,60.484375 114.933594,63.1210938 118.185547,66.6660156 C118.712891,67.2519531 119.445312,67.2519531 120.001953,66.6660156 Z M104.386719,81.2265625 C105.001953,81.2265625 105.529297,80.9335938 106.554688,79.9375 L113.029297,73.6972656 C113.498047,73.2871094 113.556641,72.6425781 113.205078,72.1445312 C111.417969,69.859375 108.136719,67.9257812 104.386719,67.9257812 C100.548828,67.9257812 97.2089844,69.9472656 95.4511719,72.3203125 C95.1875,72.7304688 95.2753906,73.2871094 95.7441406,73.6972656 L102.21875,79.9375 C103.244141,80.9335938 103.771484,81.2265625 104.386719,81.2265625 Z" opacity=".35" transform="translate(-73 -36)"/></svg>
             Join WiFi network
         </h1>
+        <p>Choose the WiFi network for this accessory to use.</p>
         <!-- <form action="/settings" method="get">
             <input type="submit" id="refresh" value="Refresh" />
         </form> -->
@@ -178,8 +180,8 @@ join_button = document.getElementById('join');
 
 function enable(e) { e.disabled = ''; }
 function disable(e) { e.disabled = 'disabled'; }
-function show(e) { e.style.display = 'block'; }
-function hide(e) { e.style.display = 'none'; }
+function show(e) { e.style.display = 'block'; e.setAttribute('hidden', ''); }
+function hide(e) { e.style.display = 'none'; e.removeAttribute('hidden'); }
 
 function selectNetwork(e) {
     let nets = document.querySelectorAll('ul.networks li');
